@@ -1,6 +1,12 @@
-CREATE TABLE IF NOT EXISTS backups (
-  code TEXT PRIMARY KEY,
-  payload TEXT NOT NULL,
-  expires_at INTEGER NOT NULL
+-- Worker가 첫 요청 때 자동 생성합니다. 수동 실행할 필요는 없습니다.
+CREATE TABLE IF NOT EXISTS sync_rooms (
+  room_id TEXT PRIMARY KEY,
+  updated_at INTEGER NOT NULL
 );
-CREATE INDEX IF NOT EXISTS idx_backups_expires_at ON backups(expires_at);
+CREATE TABLE IF NOT EXISTS sync_items (
+  room_id TEXT NOT NULL,
+  item_id TEXT NOT NULL,
+  learned INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL,
+  PRIMARY KEY (room_id,item_id)
+);
