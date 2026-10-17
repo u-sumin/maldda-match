@@ -195,6 +195,122 @@
 .pair-card-head .card-group{flex:1 1 auto!important;min-width:0;text-align:left}
 .pair-card-head .bookmark-in-game{margin-left:auto!important;flex:0 0 26px!important}
 .pair-card.answer.selected{color:#23724e!important;background:#e8f7ed!important;border-color:#27946c!important;box-shadow:0 0 0 2px rgba(36,151,107,.12)!important}
+
+/* v8: compact match interface and header-side bookmark + learned toggle */
+.item-unit-row{align-items:center;gap:6px}
+.item-unit-row .group-tag{flex:1 1 auto;min-width:0}
+.item-header-actions{display:flex;align-items:center;justify-content:flex-end;flex:0 0 auto;gap:9px;margin-left:auto;white-space:nowrap}
+.item-header-actions .bookmark-btn{width:27px!important;min-width:27px!important;height:28px!important;min-height:28px!important;padding:3px!important}
+.item-header-actions .bookmark-btn .star-icon{width:17px;height:17px}
+.item-header-actions .learn-toggle{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:28px;font-size:11px;line-height:1.1;margin:0!important;white-space:nowrap;color:#63786c;font-weight:720}
+.item-header-actions .learn-toggle input{height:15px;width:15px;margin:0;accent-color:#238059}
+.item-actions{display:flex!important;align-items:center!important;justify-content:flex-start!important;min-height:26px;gap:6px;margin-top:10px}
+.item-actions .reveal{margin:0!important;order:0!important;text-align:left}
+@media(max-width:550px){.item-header-actions{gap:7px}.item-header-actions .learn-toggle{font-size:11px}.item-unit-row{gap:5px}}
+.game-instruct{justify-content:flex-end;margin:10px 0 8px}
+.game-instruct #mistakeLabel{font-weight:730}
+.status-msg{display:none!important}
+.round-foot{justify-content:flex-end;padding:12px 0 18px}
+.round-foot:has(>.next-btn.hidden){display:none}
+.pair-card.selected,.pair-card.answer.selected{
+  background:#f0f2f2!important;border-color:#aebbb7!important;
+  color:#40504a!important;box-shadow:0 0 0 1px rgba(107,124,116,.12)!important;
+}
+.pair-card.wrong,.pair-card.selected.wrong{
+  background:#f0f2f2!important;border-color:#aebbb7!important;
+  box-shadow:0 0 0 1px rgba(107,124,116,.12)!important;
+}
+
+/* v9: 북마크와 암기 구분, 간결한 시작 및 정답 일괄 펼치기 */
+.item-header-actions{gap:6px!important}
+.item-header-actions .item-divider{color:#b5beb8;font-size:14px;font-weight:400;line-height:1;user-select:none}
+.item-actions{justify-content:flex-end!important;padding-right:13px!important}
+.item-actions .reveal{margin:0!important;order:0!important;text-align:right!important}
+.list-meta-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:7px 2px 4px 0;margin-top:1px}
+.list-meta-row .page-label{min-width:0;font-size:11.5px}
+.bulk-reveal{flex:0 0 auto;border:1px solid #dce8de;border-radius:9px;background:#fff;color:#237354;padding:5px 11px;min-height:33px;font-size:12px;font-weight:750;white-space:nowrap}
+.bulk-reveal:focus-visible{outline:2px solid #4b9f78;outline-offset:2px}
+@media(max-width:550px){.item-header-actions{gap:5px!important}.item-actions{padding-right:10px!important}.list-meta-row{gap:6px}.list-meta-row .page-label{font-size:11px}.bulk-reveal{padding:5px 8px;font-size:11px}}
+
+/* v10: 간결한 정답 일괄보기 + 북마크, 암기 표기 */
+.bulk-reveal,.bulk-reveal:hover,.bulk-reveal:active{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:transparent!important;border:0!important;box-shadow:none!important;
+  border-radius:0!important;padding:3px 2px!important;min-height:28px!important;
+  color:#237354!important;font-size:12px!important;font-weight:750;line-height:1.4;
+  text-decoration:none;cursor:pointer;
+}
+.bulk-reveal:focus-visible{outline:none!important;text-decoration:underline;text-underline-offset:3px}
+.item-header-actions{gap:8px!important}
+.item-header-actions .item-divider{display:inline-flex;justify-content:center;align-items:center;min-width:4px}
+.item-header-actions .learn-toggle{gap:5px!important}
+.item-header-actions .learn-toggle input{margin:0 0 0 2px!important}
+@media(max-width:550px){.item-header-actions{gap:8px!important}.bulk-reveal{padding:3px 2px!important}}
+
+/* v11: 작은 녹색 일괄정답 버튼 + 붙여 놓은 별/구분선 + 체크박스만 표시 */
+.bulk-reveal,.bulk-reveal:hover,.bulk-reveal:active{
+  background:#16805a!important;
+  color:#ffffff!important;
+  border:0!important;
+  border-radius:6px!important;
+  box-shadow:none!important;
+  padding:3px 12px!important;
+  min-height:0!important;
+  height:auto!important;
+  font-size:11px!important;
+  font-weight:750!important;
+  line-height:1.35!important;
+  text-decoration:none!important;
+  transition:none!important;
+}
+.bulk-reveal:focus-visible{
+  outline:2px solid #75bb9d!important;
+  outline-offset:2px;
+  text-decoration:none!important;
+}
+.bulk-reveal:disabled{opacity:.45!important;cursor:default}
+.item-header-actions{gap:3px!important}
+.item-header-actions .bookmark-btn{
+  width:24px!important;min-width:24px!important;
+  height:28px!important;min-height:28px!important;
+  padding:2px!important;
+}
+.item-header-actions .item-divider{margin-right:4px!important}
+.item-header-actions .learn-toggle{gap:0!important}
+.item-header-actions .learn-toggle input{margin:0!important}
+@media(max-width:550px){
+  .item-header-actions{gap:3px!important}
+  .bulk-reveal{padding:3px 11px!important}
+}
+
+/* v12: 초록색은 선택 중, 연회색은 연결 완료. 정답 펼치기 = 미암기 선택 버튼 색상 */
+.pair-card.selected,
+.pair-card.answer.selected,
+.pair-card.selected.wrong,
+.pair-card.answer.selected.wrong{
+  background:#e8f7ed!important;
+  border-color:#27946c!important;
+  color:#196345!important;
+  box-shadow:0 0 0 2px rgba(36,151,107,.12)!important;
+  opacity:1!important;
+}
+.pair-card.matched,
+.pair-card.question.matched,
+.pair-card.answer.matched{
+  background:#f1f3f3!important;
+  border-color:#d8dfdc!important;
+  color:#82918a!important;
+  box-shadow:none!important;
+  opacity:1!important;
+  cursor:default!important;
+}
+.bulk-reveal,
+.bulk-reveal:hover,
+.bulk-reveal:active{
+  background:#184d3a!important;
+  border-color:#184d3a!important;
+  color:#ffffff!important;
+}
 </style>
 </head>
 <body>
@@ -239,14 +355,14 @@
 <div class="field"><div class="field-label">출제 범위 <span class="field-help" id="poolCount"></span></div><div class="seg" id="scopeButtons"><button type="button" data-scope="all" class="active">전체</button><button type="button" data-scope="unlearned">미암기</button><button type="button" data-scope="learned">암기</button><button type="button" data-scope="saved">북마크</button></div></div>
 <div class="field"><div class="field-label"><span>한 게임의 문제 수 <span id="allCountLabel" class="count-total"></span></span></div><div class="num-row"><label class="num-box" for="questionCount"><input id="questionCount" type="number" min="1" max="323" step="1" inputmode="numeric" value="20" aria-label="직접 입력할 문제 수"><small>문제</small></label></div><div class="quick" id="countQuick" role="group" aria-label="빠른 문제 수 선택"><button type="button" data-count="10">10</button><button type="button" data-count="20" class="active">20</button><button type="button" data-count="30">30</button><button type="button" data-count="all" id="allCount" aria-pressed="false">전체</button></div></div>
 
-<div class="notice" id="startNotice">제한시간 없이 한 세트당 5쌍씩 연결합니다.</div><button class="primary" id="startButton">짝맞추기 시작 →</button></aside>
-<main class="panel library"><div class="library-head"><div><h2>문제 보관함</h2><p>암기 완료와 북마크를 따로 관리할 수 있어요.</p></div><div class="filter-pills" id="listFilters"><button class="pill" data-filter="all">전체</button><button class="pill active" data-filter="unlearned">미암기</button><button class="pill" data-filter="learned">암기</button><button class="pill" data-filter="saved" id="savedFilter">북마크</button><span id="bookmarkCount" class="hidden" aria-hidden="true">0</span></div></div><div class="library-group-row"><span class="group-title">보관함 단원</span><select id="libraryGroup" class="group-select" aria-label="문제 보관함 단원 선택"></select></div><div class="search-wrap"><span>⌕</span><input id="search" type="search" placeholder="문제나 정답 검색" aria-label="문제나 정답 검색"></div><div id="listMeta" class="page-label" style="padding:4px 0 1px"></div><div id="questionList"></div><div class="pagination"><button class="secondary" id="prevPage">← 이전</button><span class="page-label" id="pageLabel"></span><button class="secondary" id="nextPage">다음 →</button></div></main>
+<div class="notice" id="startNotice">제한시간 없이 한 세트당 5쌍씩 연결합니다.</div><button class="primary" id="startButton">짝맞추기 시작</button></aside>
+<main class="panel library"><div class="library-head"><div><h2>문제 보관함</h2><p>암기 완료와 북마크를 따로 관리할 수 있어요.</p></div><div class="filter-pills" id="listFilters"><button class="pill" data-filter="all">전체</button><button class="pill active" data-filter="unlearned">미암기</button><button class="pill" data-filter="learned">암기</button><button class="pill" data-filter="saved" id="savedFilter">북마크</button><span id="bookmarkCount" class="hidden" aria-hidden="true">0</span></div></div><div class="library-group-row"><span class="group-title">보관함 단원</span><select id="libraryGroup" class="group-select" aria-label="문제 보관함 단원 선택"></select></div><div class="search-wrap"><span>⌕</span><input id="search" type="search" placeholder="문제나 정답 검색" aria-label="문제나 정답 검색"></div><div class="list-meta-row"><div id="listMeta" class="page-label"></div><button type="button" id="toggleAllAnswers" class="bulk-reveal" aria-expanded="false">정답 펼치기</button></div><div id="questionList"></div><div class="pagination"><button class="secondary" id="prevPage">← 이전</button><span class="page-label" id="pageLabel"></span><button class="secondary" id="nextPage">다음 →</button></div></main>
 </div><div class="backup"><button id="exportBtn">JSON 파일 백업하기</button><button id="importBtn">JSON 파일 가져오기</button><button id="resetBtn">암기 체크 초기화</button></div>
 
 <input type="file" id="importFile" accept=".json,application/json" class="hidden">
 </section>
-<section id="game" class="hidden"><div class="game-nav"><button class="back" id="exitGame">← 문제 보관함</button><div class="timer" id="timer">경과 <span id="timerVal">00:00</span></div></div><div class="game-head"><div class="game-meta"><span id="gameRoundLabel">1 / 7 세트</span><span id="gameCountLabel">0 / 20 정답</span></div><h1>문제와 정답을 연결해 보세요.</h1><div class="game-track"><div id="gameProgress" style="width:0%"></div></div></div><div class="game-instruct"><strong>두 카드를 하나씩 선택하세요.</strong><span id="mistakeLabel">오답 시도 0회</span></div><div class="boards"><div><div class="col-title"><span class="dot"></span>문제</div><div class="card-list" id="questionCards"></div></div><div><div class="col-title answer-title"><span class="dot"></span>정답</div><div class="card-list" id="answerCards"></div></div></div><div id="statusMsg" class="status-msg" aria-live="polite">문제 카드와 답 카드를 선택하세요.</div><div class="round-foot"><small>틀리면 다시 선택할 수 있습니다.</small><button id="nextRound" class="next-btn hidden">다음 세트 →</button></div><div class="howto">한 세트에 최대 5쌍까지 표시됩니다. 그림과 표는 눌러서 확대할 수 있습니다.</div></section>
-<section id="result" class="hidden result"><div class="panel result-card"><div class="result-emoji" id="resultIcon">✓</div><h1 id="resultTitle">연습 완료</h1><p id="resultDetail">오늘도 한 걸음 더!</p><div class="result-score" id="resultScore">0<small> / 20 문제</small></div><div class="result-stats"><div class="result-stat"><strong id="resultTime">00:00</strong><span>사용 시간</span></div><div class="result-stat"><strong id="resultMistakes">0회</strong><span>오답 시도</span></div><div class="result-stat"><strong id="resultAccuracy">100%</strong><span>연결 정확도</span></div></div><div class="result-actions"><button class="secondary" id="homeResult">문제 보관함</button><button class="primary" style="width:auto" id="repeatResult">다시 연습하기 →</button></div></div><div class="panel review hidden" id="reviewPanel"><h2 id="reviewTitle">복습할 문제</h2><p>틀렸거나 완료하지 못한 문제를 다시 확인해 보세요.</p><div id="reviewList"></div><div style="margin-top:17px"><button id="retryMissed" class="primary">복습 문제만 다시 풀기 →</button></div></div></section>
+<section id="game" class="hidden"><div class="game-nav"><button class="back" id="exitGame">← 문제 보관함</button><div class="timer" id="timer"><span id="timerVal">00:00</span></div></div><div class="game-head"><div class="game-meta"><span id="gameRoundLabel">1 / 7 세트</span><span id="gameCountLabel">0 / 20 정답</span></div><div class="game-track"><div id="gameProgress" style="width:0%"></div></div></div><div class="game-instruct"><span id="mistakeLabel">오답 0회</span></div><div class="boards"><div><div class="col-title"><span class="dot"></span>문제</div><div class="card-list" id="questionCards"></div></div><div><div class="col-title answer-title"><span class="dot"></span>정답</div><div class="card-list" id="answerCards"></div></div></div><div id="statusMsg" class="status-msg" aria-live="polite"></div><div class="round-foot"><button id="nextRound" class="next-btn hidden">다음 세트 →</button></div></section>
+<section id="result" class="hidden result"><div class="panel result-card"><div class="result-emoji" id="resultIcon">✓</div><h1 id="resultTitle">연습 완료</h1><p id="resultDetail">오늘도 한 걸음 더!</p><div class="result-score" id="resultScore">0<small> / 20 문제</small></div><div class="result-stats"><div class="result-stat"><strong id="resultTime">00:00</strong><span>사용 시간</span></div><div class="result-stat"><strong id="resultMistakes">0회</strong><span>오답</span></div><div class="result-stat"><strong id="resultAccuracy">100%</strong><span>연결 정확도</span></div></div><div class="result-actions"><button class="secondary" id="homeResult">문제 보관함</button><button class="primary" style="width:auto" id="repeatResult">다시 연습하기 →</button></div></div><div class="panel review hidden" id="reviewPanel"><h2 id="reviewTitle">복습할 문제</h2><p>틀렸거나 완료하지 못한 문제를 다시 확인해 보세요.</p><div id="reviewList"></div><div style="margin-top:17px"><button id="retryMissed" class="primary">복습 문제만 다시 풀기 →</button></div></div></section>
 </div>
 <div class="toast hidden" id="toast"></div>
 <div class="image-modal hidden" id="imageModal" role="dialog" aria-modal="true" aria-label="원본 그림 또는 표 확대"><button type="button" id="closeZoom" aria-label="이미지 닫기">×</button><img id="zoomImage" alt="확대한 PDF 원본 그림 또는 표"></div>
@@ -361,8 +477,12 @@ function renderList(){
   listPage=Math.max(0,Math.min(listPage,pages-1));
   const sub=items.slice(listPage*50,(listPage+1)*50);
   $('listMeta').textContent=items.length?`${items.length}문제 중 ${listPage*50+1}~${Math.min((listPage+1)*50,items.length)}번 표시`:'0문제 표시';
+  const allVisibleOpen=sub.length>0 && sub.every(q=>revealed.has(q.id));
+  $('toggleAllAnswers').textContent=allVisibleOpen?'정답 접기':'정답 펼치기';
+  $('toggleAllAnswers').setAttribute('aria-expanded',String(allVisibleOpen));
+  $('toggleAllAnswers').disabled=sub.length===0;
   $('questionList').innerHTML=sub.length?sub.map(q=>{
-    return `<article class="item ${learned[q.id]?'learned':''}"><div class="item-top"><span class="item-id">${q.originalNo}</span><div class="item-main"><div class="item-unit-row"><span class="group-tag">${safe(q.group)}</span>${bookmarkButton(q)}</div><div class="item-q">${lines(q.question)}</div>${imageMarkup(q)}<div class="item-actions"><label class="learn-toggle"><input type="checkbox" data-learn="${q.id}" ${learned[q.id]?'checked':''}> 암기 완료</label><button class="reveal" data-reveal="${q.id}" aria-expanded="${revealed.has(q.id)}">${revealed.has(q.id)?'정답 접기 −':'정답 보기 +'}</button></div>${revealed.has(q.id)?`<div class="item-answer">${lines(q.answer)}${imageMarkup(q,'answer')}</div>`:''}</div></div></article>`;
+    return `<article class="item ${learned[q.id]?'learned':''}"><div class="item-top"><span class="item-id">${q.originalNo}</span><div class="item-main"><div class="item-unit-row"><span class="group-tag">${safe(q.group)}</span><div class="item-header-actions">${bookmarkButton(q)}<span class="item-divider" aria-hidden="true">|</span><label class="learn-toggle"><input type="checkbox" data-learn="${q.id}" aria-label="암기 완료" ${learned[q.id]?'checked':''}></label></div></div><div class="item-q">${lines(q.question)}</div>${imageMarkup(q)}<div class="item-actions"><button class="reveal" data-reveal="${q.id}" aria-expanded="${revealed.has(q.id)}">${revealed.has(q.id)?'정답 접기 -':'정답 보기 +'}</button></div>${revealed.has(q.id)?`<div class="item-answer">${lines(q.answer)}${imageMarkup(q,'answer')}</div>`:''}</div></div></article>`;
   }).join(''):`<div class="empty"><strong>해당하는 문제가 없습니다.</strong>단원이나 검색 조건을 변경하거나 북마크할 문제를 저장해 보세요.</div>`;
   $('pageLabel').textContent=`${listPage+1} / ${pages}`;
   $('prevPage').disabled=listPage===0;
@@ -377,8 +497,8 @@ function startSession(byIds){const available=byIds?byIds.map(id=>BYID.get(id)).f
 function elapsed(){return Math.floor((Date.now()-session.startTime)/1000);}
 function fmt(s){s=Math.max(0,Math.floor(s));return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');}
 function updateTimer(){if(!session||session.ended)return;$('timerVal').textContent=fmt(elapsed());}
-function renderRound(){if(!session||session.ended)return;session.selectedQ=null;session.selectedA=null;session.roundMatched=new Set();const round=session.rounds[session.roundIdx];$('gameRoundLabel').textContent=`${session.roundIdx+1} / ${session.rounds.length} 세트`;$('gameCountLabel').textContent=`${session.matched.size} / ${session.items.length} 정답`;$('gameProgress').style.width=(session.matched.size/session.items.length*100)+'%';$('mistakeLabel').textContent=`오답 시도 ${session.wrongAttempts}회`;$('questionCards').innerHTML=shuffled(round).map(q=>`<div class="pair-wrap"><button type="button" class="pair-card question" data-side="q" data-id="${q.id}"><span class="card-content">${lines(q.question)}${imageMarkup(q)}</span></button><div class="pair-card-head"><span class="card-group">${safe(q.group)}</span>${bookmarkButton(q,true)}</div></div>`).join('');$('answerCards').innerHTML=shuffled(round).map(q=>`<button type="button" class="pair-card answer" data-side="a" data-id="${q.id}"><span class="card-content">${lines(q.matchAnswer||q.answer)}${imageMarkup(q,'answer')}</span></button>`).join('');$('statusMsg').textContent='문제 카드와 답 카드를 선택하세요.';$('statusMsg').classList.remove('error');$('nextRound').classList.add('hidden');}
-function selectCard(btn){if(!session||session.ended||session.locked||btn.classList.contains('matched'))return;const side=btn.dataset.side,id=btn.dataset.id,key=side==='q'?'selectedQ':'selectedA';document.querySelectorAll('.pair-card.'+(side==='q'?'question':'answer')+'.selected').forEach(el=>el.classList.remove('selected'));if(session[key]===id){session[key]=null;return;}session[key]=id;btn.classList.add('selected');if(session.selectedQ&&session.selectedA){let qid=session.selectedQ,aid=session.selectedA;session.attempts++;if(qid===aid){session.matched.add(qid);session.roundMatched.add(qid);document.querySelectorAll(`.pair-card[data-id="${qid}"]`).forEach(el=>{el.classList.remove('selected');el.classList.add('matched');el.disabled=true;});session.selectedQ=null;session.selectedA=null;$('gameCountLabel').textContent=`${session.matched.size} / ${session.items.length} 정답`;$('gameProgress').style.width=(session.matched.size/session.items.length*100)+'%';$('statusMsg').textContent='정답입니다!';$('statusMsg').classList.remove('error');if(session.roundMatched.size===session.rounds[session.roundIdx].length){$('statusMsg').textContent='이번 세트 완료!';$('nextRound').textContent=session.roundIdx+1>=session.rounds.length?'결과 확인하기 →':'다음 세트 →';$('nextRound').classList.remove('hidden');}}else{session.wrongAttempts++;session.wrongPairs.add(qid);session.locked=true;$('mistakeLabel').textContent=`오답 시도 ${session.wrongAttempts}회`;$('statusMsg').textContent='연결이 달라요. 다시 선택해 보세요.';$('statusMsg').classList.add('error');document.querySelectorAll('.pair-card.selected').forEach(el=>el.classList.add('wrong'));if(navigator.vibrate)navigator.vibrate(45);const thisSession=session;setTimeout(()=>{if(session!==thisSession||!session||session.ended)return;document.querySelectorAll('.pair-card.selected').forEach(el=>el.classList.remove('selected','wrong'));session.selectedQ=null;session.selectedA=null;session.locked=false;},580);}}}
+function renderRound(){if(!session||session.ended)return;session.selectedQ=null;session.selectedA=null;session.roundMatched=new Set();const round=session.rounds[session.roundIdx];$('gameRoundLabel').textContent=`${session.roundIdx+1} / ${session.rounds.length} 세트`;$('gameCountLabel').textContent=`${session.matched.size} / ${session.items.length} 정답`;$('gameProgress').style.width=(session.matched.size/session.items.length*100)+'%';$('mistakeLabel').textContent=`오답 ${session.wrongAttempts}회`;$('questionCards').innerHTML=shuffled(round).map(q=>`<div class="pair-wrap"><button type="button" class="pair-card question" data-side="q" data-id="${q.id}"><span class="card-content">${lines(q.question)}${imageMarkup(q)}</span></button><div class="pair-card-head"><span class="card-group">${safe(q.group)}</span>${bookmarkButton(q,true)}</div></div>`).join('');$('answerCards').innerHTML=shuffled(round).map(q=>`<button type="button" class="pair-card answer" data-side="a" data-id="${q.id}"><span class="card-content">${lines(q.matchAnswer||q.answer)}${imageMarkup(q,'answer')}</span></button>`).join('');$('statusMsg').textContent='';$('statusMsg').classList.remove('error');$('nextRound').classList.add('hidden');}
+function selectCard(btn){if(!session||session.ended||session.locked||btn.classList.contains('matched'))return;const side=btn.dataset.side,id=btn.dataset.id,key=side==='q'?'selectedQ':'selectedA';document.querySelectorAll('.pair-card.'+(side==='q'?'question':'answer')+'.selected').forEach(el=>el.classList.remove('selected'));if(session[key]===id){session[key]=null;return;}session[key]=id;btn.classList.add('selected');if(session.selectedQ&&session.selectedA){let qid=session.selectedQ,aid=session.selectedA;session.attempts++;if(qid===aid){session.matched.add(qid);session.roundMatched.add(qid);document.querySelectorAll(`.pair-card[data-id="${qid}"]`).forEach(el=>{el.classList.remove('selected');el.classList.add('matched');el.disabled=true;});session.selectedQ=null;session.selectedA=null;$('gameCountLabel').textContent=`${session.matched.size} / ${session.items.length} 정답`;$('gameProgress').style.width=(session.matched.size/session.items.length*100)+'%';$('statusMsg').textContent='';$('statusMsg').classList.remove('error');if(session.roundMatched.size===session.rounds[session.roundIdx].length){$('statusMsg').textContent='';$('nextRound').textContent=session.roundIdx+1>=session.rounds.length?'결과 확인하기 →':'다음 세트 →';$('nextRound').classList.remove('hidden');}}else{session.wrongAttempts++;session.wrongPairs.add(qid);session.locked=true;$('mistakeLabel').textContent=`오답 ${session.wrongAttempts}회`;$('statusMsg').textContent='';$('statusMsg').classList.add('error');document.querySelectorAll('.pair-card.selected').forEach(el=>el.classList.add('wrong'));if(navigator.vibrate)navigator.vibrate(45);const thisSession=session;setTimeout(()=>{if(session!==thisSession||!session||session.ended)return;document.querySelectorAll('.pair-card.selected').forEach(el=>el.classList.remove('selected','wrong'));session.selectedQ=null;session.selectedA=null;session.locked=false;},580);}}}
 function goNext(){if(!session||session.ended)return;if(session.roundMatched.size!==session.rounds[session.roundIdx].length)return;if(session.roundIdx+1>=session.rounds.length){finish('done');return;}session.roundIdx++;renderRound();window.scrollTo({top:0,behavior:'smooth'});}
 let reviewIds=[];
 function finish(reason){if(!session||session.ended)return;session.ended=true;clearInterval(tick);const count=session.matched.size,total=session.items.length,accuracy=session.attempts?Math.round(count/session.attempts*100):0;reviewIds=session.items.filter(q=>!session.matched.has(q.id)||session.wrongPairs.has(q.id)).map(q=>q.id);$('resultTitle').textContent='연습 완료!';$('resultDetail').textContent='모든 문제를 연결했습니다. 결과를 확인하세요.';$('resultIcon').textContent='✓';$('resultScore').innerHTML=count+`<small> / ${total} 문제</small>`;$('resultTime').textContent=fmt(elapsed());$('resultMistakes').textContent=session.wrongAttempts+'회';$('resultAccuracy').textContent=accuracy+'%';$('reviewPanel').classList.toggle('hidden',reviewIds.length===0);$('reviewTitle').textContent=`복습할 문제 ${reviewIds.length}개`;$('retryMissed').disabled=reviewIds.length===0;$('reviewList').innerHTML=reviewIds.map(id=>{const q=BYID.get(id);return `<article class="review-item"><div class="group-tag">${safe(q.group)}</div><div class="q">${lines(q.question)}${imageMarkup(q)}</div><div class="a">${lines(q.answer)}${imageMarkup(q,'answer')}</div><div class="review-tools">${bookmarkButton(q)}<label class="learn-toggle"><input type="checkbox" data-review-learn="${q.id}" ${learned[q.id]?'checked':''}> 암기 완료</label></div></article>`;}).join('');show('result');}
@@ -392,6 +512,13 @@ bindGroupPicker('libraryGroup');
 $('listFilters').addEventListener('click',e=>{const b=e.target.closest('[data-filter]');if(!b)return;listFilter=b.dataset.filter;listPage=0;document.querySelectorAll('[data-filter]').forEach(x=>x.classList.toggle('active',x===b));renderList();});
 document.addEventListener('click',e=>{const btn=e.target.closest('[data-bookmark]');if(!btn)return;e.preventDefault();e.stopPropagation();toggleBookmark(btn.dataset.bookmark);});
 $('questionList').addEventListener('click',e=>{const btn=e.target.closest('[data-reveal]');if(!btn)return;const id=btn.dataset.reveal;revealed.has(id)?revealed.delete(id):revealed.add(id);renderList();});
+$('toggleAllAnswers').addEventListener('click',()=>{
+  const visible=filtered().slice(listPage*50,(listPage+1)*50);
+  if(!visible.length)return;
+  const shouldClose=visible.every(q=>revealed.has(q.id));
+  visible.forEach(q=>shouldClose?revealed.delete(q.id):revealed.add(q.id));
+  renderList();
+});
 $('questionList').addEventListener('change',e=>{const el=e.target.closest('[data-learn]');if(!el)return;if(el.checked)learned[el.dataset.learn]=true;else delete learned[el.dataset.learn];saveLearned();renderLobby();});
 $('reviewList').addEventListener('change',e=>{const el=e.target.closest('[data-review-learn]');if(!el)return;if(el.checked)learned[el.dataset.reviewLearn]=true;else delete learned[el.dataset.reviewLearn];saveLearned();});
 $('prevPage').addEventListener('click',()=>{listPage--;renderList();});$('nextPage').addEventListener('click',()=>{listPage++;renderList();});$('search').addEventListener('input',()=>{listPage=0;renderList();});
