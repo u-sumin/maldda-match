@@ -92,6 +92,63 @@
 .pair-wrap>.pair-card{width:100%;min-height:100%;padding-top:40px}
 .bookmark-in-game{position:absolute;top:6px;right:7px;z-index:2;padding:4px 7px;font-size:10px;border-radius:7px}
 @media(max-width:550px){.cloud-compact{padding:9px 12px;min-height:42px}.cloud-inner{padding:7px 12px 15px}.filter-pills{gap:5px;flex-wrap:wrap}.bookmark-btn{padding:6px 8px;font-size:11px}.bookmark-in-game{padding:4px 5px;font-size:9px;top:5px;right:5px}.pair-wrap>.pair-card{padding-top:32px}}
+
+/* 간결한 문제별 별표와 가로 4분할 설정 */
+.bookmark-btn,.bookmark-btn.is-saved{border:0!important;box-shadow:none!important;background:transparent!important;border-radius:50%;padding:3px 7px!important;color:#b7bdb5;font-size:23px!important;font-weight:600;min-width:36px;min-height:36px;line-height:1.05}
+.bookmark-btn.is-saved{color:#e4a52e}
+.bookmark-btn:hover{background:#fff8e2!important}
+.bookmark-btn:focus-visible{outline:2px solid #b98b25;outline-offset:0}
+.bookmark-in-game{font-size:19px!important;min-height:27px;min-width:29px;padding:1px 4px!important;top:4px;right:5px}
+.pair-wrap>.pair-card{padding-top:34px}
+#scopeButtons{grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;padding:4px}
+#scopeButtons button{white-space:nowrap;font-size:12px;padding:9px 0;min-width:0}
+#countQuick{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:100%;gap:6px;margin-top:0}
+#countQuick button{border-radius:10px;min-width:0;padding:9px 0;font-size:13px;min-height:40px}
+.filter-pills{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;width:100%;flex-wrap:nowrap}
+.filter-pills .pill{min-width:0;white-space:nowrap;padding:8px 1px;font-size:12px;text-align:center}
+.library-head{align-items:flex-start;flex-direction:column;gap:11px}
+.cloud-sync-note{font-size:12px;color:#547361;line-height:1.6;margin:8px 0 12px}
+.cloud-manual{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.cloud-manual button{min-width:0;white-space:nowrap;padding:10px 5px;font-size:12px;min-height:39px}
+@media(max-width:360px){#scopeButtons button,.filter-pills .pill{font-size:11px}.cloud-manual button{font-size:11px}}
+
+/* v5: compact layout, soft star, single-group selectors and editable count */
+#lobby .cloud-area{margin:9px 0 6px!important}
+#lobby .layout{margin-top:9px}
+.cloud-compact{gap:8px}
+.cloud-compact-arrow{display:flex;align-items:center;justify-content:center;width:21px;height:21px;color:#6b8777;transition:transform .18s ease;transform:rotate(0deg)}
+.cloud-compact-arrow svg{display:block;pointer-events:none}
+.cloud-area[open] .cloud-compact-arrow{transform:rotate(180deg)}
+.cloud-compact::marker{content:""}
+.cloud-compact::-webkit-details-marker{display:none}
+#groupSelect,#libraryGroup{width:100%;min-height:45px;display:block;appearance:auto;-webkit-appearance:menulist;color:#2b523d;background:#fbfcfa;border:1px solid #d7e5da;border-radius:11px;padding:11px 12px;font-size:13px;font-weight:700;outline-offset:2px}
+#groupSelect:focus-visible,#libraryGroup:focus-visible{outline:2px solid #81b89b}
+.library-group-row{align-items:center}
+.library-group-row .group-title{padding-top:0;flex-shrink:0}
+#questionCount{display:block;min-width:72px;width:120px;max-width:100%;border:0!important;outline:0;background:none;text-align:center;color:#214a36;font-size:19px;font-weight:800;font-variant-numeric:tabular-nums;appearance:textfield;-moz-appearance:textfield}
+#questionCount::-webkit-inner-spin-button,#questionCount::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.num-row{margin:2px 0 10px}
+.num-box{width:100%;height:45px;justify-content:center;gap:8px;background:#fff}
+.num-box:focus-within{border-color:#77b795;box-shadow:0 0 0 2px #e2f4e8}
+.num-box small{font-size:12px;color:#7a9281}
+.count-total{color:#16845e;font-size:12px;font-weight:800;white-space:nowrap}
+#countQuick{margin-top:0}
+.item-unit-row{display:flex;align-items:center;justify-content:space-between;gap:9px;min-height:28px;margin:0 0 7px}
+.item-unit-row .group-tag{margin:0;line-height:1.45;flex:1;min-width:0;font-size:10px}
+.item-actions{justify-content:space-between;flex-wrap:nowrap;gap:10px;min-height:30px;margin-top:10px}
+.item-actions .learn-toggle{margin-left:auto;white-space:nowrap}
+.bookmark-btn,.bookmark-btn.is-saved{display:inline-flex!important;align-items:center;justify-content:center;flex:0 0 auto;vertical-align:middle;min-width:30px!important;min-height:30px!important;width:30px;height:30px;padding:4px!important;margin:0;color:#a9b6ac;background:transparent!important;border:0!important;border-radius:6px!important;box-shadow:none!important;transition:none!important;transform:none!important;cursor:pointer;line-height:1}
+.bookmark-btn .star-icon{display:block;width:18px;height:18px;fill:none;stroke:currentColor;stroke-linejoin:round;stroke-linecap:round;pointer-events:none}
+.bookmark-btn.is-saved{color:#dfa327!important}
+.bookmark-btn.is-saved .star-icon{fill:currentColor}
+.bookmark-btn:hover,.bookmark-btn.is-saved:hover,.bookmark-btn:active,.bookmark-btn.is-saved:active{color:inherit;background:transparent!important;box-shadow:none!important;transform:none!important;filter:none!important}
+.bookmark-btn:not(.is-saved):hover,.bookmark-btn:not(.is-saved):active{color:#a9b6ac!important}
+.bookmark-btn.is-saved:hover,.bookmark-btn.is-saved:active{color:#dfa327!important}
+.bookmark-btn:focus-visible{outline:2px solid #8bb99a;outline-offset:1px}
+.bookmark-in-game{position:absolute;top:5px;right:5px;width:27px;height:27px;min-width:27px!important;min-height:27px!important;padding:4px!important}
+.bookmark-in-game .star-icon{width:16px;height:16px}
+.pair-wrap>.pair-card{padding-top:34px}
+@media(max-width:560px){.library-group-row{display:block}.library-group-row .group-title{display:block;margin:0 0 6px}.num-row{margin-bottom:9px}#lobby .layout{margin-top:8px}#lobby .cloud-area{margin-bottom:6px!important}.item-unit-row .group-tag{font-size:10px}}
 </style>
 </head>
 <body>
@@ -100,9 +157,9 @@
 <section id="lobby">
 <div class="hero"><div class="eyebrow">CIVIL ENGINEERING STUDY GAME</div><h1>토목 말따먹기<br>짝맞추기 연습</h1><p>문제를 고르고 정답과 연결해 보세요.</p><div class="stats"><div class="stat"><strong id="statAll">0</strong><span>전체 문제</span></div><div class="stat"><strong id="statLearned">0</strong><span>암기 완료</span></div><div class="stat"><strong id="statTodo">0</strong><span>미암기</span></div></div><div class="hero-progress"><div id="memorizedProgress" style="width:0%"></div></div></div>
  <details class="panel cloud-area" id="cloudBackupPanel">
-  <summary class="cloud-compact"><span class="cloud-compact-name">☁ 자동 동기화</span><span id="cloudCompactState" class="cloud-compact-state">연결 확인 중</span><span class="cloud-compact-arrow" aria-hidden="true">⌄</span></summary>
+  <summary class="cloud-compact"><span class="cloud-compact-name">☁ 자동 동기화</span><span id="cloudCompactState" class="cloud-compact-state">연결 확인 중</span><span class="cloud-compact-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
   <div class="cloud-inner">
-  <p class="cloud-intro">스마트폰과 태블릿의 암기 체크와 북마크를 함께 저장합니다. 연결 설정이 필요할 때만 펼쳐 주세요.</p>
+  <p class="cloud-intro">암기 체크와 북마크가 연결된 기기에 함께 저장됩니다.</p>
   <div id="cloudDisconnected">
     <p class="cloud-tip">아직 연결하지 않아도 이 기기에 암기 기록은 저장됩니다. 동기화를 사용하려면 무료 Cloudflare 백업 서버를 먼저 만들어야 합니다.</p>
     <label for="cloudEndpoint" class="field-label">Cloudflare Workers 서버 주소</label>
@@ -115,9 +172,10 @@
     </details>
   </div>
   <div id="cloudConnected" class="hidden">
-    <div class="cloud-connection"><strong>✓ 이 기기가 연결되어 있어요</strong><span class="cloud-small">문제 체크를 바꾸면 자동 전송돼요. 다른 기기에서는 페이지를 열거나 다시 돌아오면 자동으로 받아요.</span></div>
-    <div class="cloud-row"><button id="cloudShare" type="button" class="cloud-action main">다른 기기 연결 링크 복사</button><button id="cloudRefresh" type="button" class="cloud-action">지금 동기화</button></div>
-    <details class="cloud-advanced"><summary>연결 정보 확인 / 이 기기 연결 해제</summary>
+    <div class="cloud-sync-note">체크는 자동 저장돼요. 필요하면 아래 버튼으로 즉시 보내거나 받아올 수 있어요.</div>
+    <div class="cloud-row cloud-manual"><button id="cloudSend" type="button" class="cloud-action main">↑ 내 변경 보내기</button><button id="cloudReceive" type="button" class="cloud-action">↓ 최신 기록 받기</button></div>
+    <details class="cloud-advanced"><summary>기기 연결 링크 / 상세 설정</summary>
+      <div class="cloud-row"><button id="cloudShare" type="button" class="cloud-action">다른 기기 연결 링크 복사</button></div>
       <div style="padding-top:10px"><span class="cloud-small">연결 키와 링크를 아는 사람은 암기 기록에 접근할 수 있어요. 공개 게시물에 공유하지 마세요.</span>
       <div class="cloud-row"><input id="cloudKeyView" type="text" readonly class="cloud-key" aria-label="연결 키"><button id="cloudCopyKey" type="button" class="cloud-action">키 복사</button></div>
       <div id="cloudServerText" class="cloud-small"></div>
@@ -131,12 +189,12 @@
 </details>
 <div class="layout">
 <aside class="panel settings"><div class="title-row"><div class="little-icon">⚙</div><h2>게임 설정</h2></div>
-<div class="field"><div class="field-label">출제할 단원 <span class="field-help">여러 단원 선택 가능</span></div><div id="groupSelect" class="multi-group" aria-label="게임 출제 단원 선택"></div></div>
-<div class="field"><div class="field-label">출제 범위 <span class="field-help" id="poolCount"></span></div><div class="seg" id="scopeButtons"><button type="button" data-scope="all" class="active">전체</button><button type="button" data-scope="unlearned">못 외운 것</button><button type="button" data-scope="learned">암기 완료</button><button type="button" data-scope="saved">북마크</button></div></div>
-<div class="field"><div class="field-label">한 게임의 문제 수 <span class="field-help">1~100문제 또는 선택 범위 전체</span></div><div class="num-row"><button class="num-step" id="minusQ" aria-label="문제 수 줄이기">−</button><div class="num-box"><input id="questionCount" inputmode="numeric" type="number" min="1" max="100" value="20"><small>문제</small></div><button class="num-step" id="plusQ" aria-label="문제 수 늘리기">+</button></div><div class="quick" id="countQuick"><button data-count="5">5</button><button data-count="10">10</button><button data-count="20" class="active">20</button><button data-count="30">30</button><button data-count="50">50</button><button data-count="80">80</button><button data-count="100">100</button><button data-count="all" id="allCount" aria-pressed="false">전범위 모두</button></div></div>
+<div class="field"><div class="field-label">출제할 단원</div><select id="groupSelect" class="group-select" aria-label="게임 출제 단원 선택"></select></div>
+<div class="field"><div class="field-label">출제 범위 <span class="field-help" id="poolCount"></span></div><div class="seg" id="scopeButtons"><button type="button" data-scope="all" class="active">전체</button><button type="button" data-scope="unlearned">미암기</button><button type="button" data-scope="learned">암기</button><button type="button" data-scope="saved">북마크</button></div></div>
+<div class="field"><div class="field-label"><span>한 게임의 문제 수 <span id="allCountLabel" class="count-total"></span></span></div><div class="num-row"><label class="num-box" for="questionCount"><input id="questionCount" type="number" min="1" max="323" step="1" inputmode="numeric" value="20" aria-label="직접 입력할 문제 수"><small>문제</small></label></div><div class="quick" id="countQuick" role="group" aria-label="빠른 문제 수 선택"><button type="button" data-count="10">10</button><button type="button" data-count="20" class="active">20</button><button type="button" data-count="30">30</button><button type="button" data-count="all" id="allCount" aria-pressed="false">전체</button></div></div>
 
-<div class="notice" id="startNotice">제한시간 없이 한 세트당 5쌍씩 연결합니다.</div><button class="primary" id="startButton">짝맞추기 시작 →</button><p class="bottom-desc">일반 모드는 무작위 출제, 전범위 모드는 선택 범위 내 모든 문제를 중복 없이 출제합니다.</p></aside>
-<main class="panel library"><div class="library-head"><div><h2>문제 보관함</h2><p>암기 완료와 북마크를 따로 관리할 수 있어요.</p></div><div class="filter-pills" id="listFilters"><button class="pill" data-filter="all">전체</button><button class="pill active" data-filter="unlearned">미암기</button><button class="pill" data-filter="learned">암기 완료</button><button class="pill" data-filter="saved" id="savedFilter">☆ 북마크 <span id="bookmarkCount">0</span></button></div></div><div class="library-group-row"><span class="group-title">보관함 단원</span><div id="libraryGroup" class="multi-group" aria-label="문제 보관함 단원 선택"></div></div><div class="search-wrap"><span>⌕</span><input id="search" type="search" placeholder="문제나 정답 검색" aria-label="문제나 정답 검색"></div><div id="listMeta" class="page-label" style="padding:4px 0 1px"></div><div id="questionList"></div><div class="pagination"><button class="secondary" id="prevPage">← 이전</button><span class="page-label" id="pageLabel"></span><button class="secondary" id="nextPage">다음 →</button></div></main>
+<div class="notice" id="startNotice">제한시간 없이 한 세트당 5쌍씩 연결합니다.</div><button class="primary" id="startButton">짝맞추기 시작 →</button></aside>
+<main class="panel library"><div class="library-head"><div><h2>문제 보관함</h2><p>암기 완료와 북마크를 따로 관리할 수 있어요.</p></div><div class="filter-pills" id="listFilters"><button class="pill" data-filter="all">전체</button><button class="pill active" data-filter="unlearned">미암기</button><button class="pill" data-filter="learned">암기</button><button class="pill" data-filter="saved" id="savedFilter">북마크</button><span id="bookmarkCount" class="hidden" aria-hidden="true">0</span></div></div><div class="library-group-row"><span class="group-title">보관함 단원</span><select id="libraryGroup" class="group-select" aria-label="문제 보관함 단원 선택"></select></div><div class="search-wrap"><span>⌕</span><input id="search" type="search" placeholder="문제나 정답 검색" aria-label="문제나 정답 검색"></div><div id="listMeta" class="page-label" style="padding:4px 0 1px"></div><div id="questionList"></div><div class="pagination"><button class="secondary" id="prevPage">← 이전</button><span class="page-label" id="pageLabel"></span><button class="secondary" id="nextPage">다음 →</button></div></main>
 </div><div class="backup"><button id="exportBtn">JSON 파일 백업하기</button><button id="importBtn">JSON 파일 가져오기</button><button id="resetBtn">암기 체크 초기화</button></div>
 
 <input type="file" id="importFile" accept=".json,application/json" class="hidden"><p class="app-note">암기 체크와 북마크는 이 기기에 저장됩니다. 업데이트된 Cloudflare Worker를 연결하면 두 기기에서도 공유됩니다.</p>
@@ -172,9 +230,12 @@ function saveBookmarks(){
     if(Object.keys(changes).length)queueSyncChanges(changes);
   }
 }
+function starSVG(){
+  return `<svg class="star-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.35c.35 0 .65.19.81.52l2.22 4.48 4.95.72c.72.1 1 .98.48 1.49l-3.58 3.49.85 4.93c.12.72-.62 1.26-1.27.92L12 17.57l-4.46 2.34c-.65.34-1.39-.2-1.27-.92l.85-4.93-3.58-3.49c-.52-.51-.24-1.39.48-1.49l4.95-.72 2.22-4.48c.16-.33.46-.52.81-.52z"/></svg>`;
+}
 function bookmarkButton(q,forGame=false){
   const selected=!!bookmarks[q.id];
-  return `<button type="button" class="bookmark-btn ${selected?'is-saved':''} ${forGame?'bookmark-in-game':''}" data-bookmark="${q.id}" aria-pressed="${selected}" aria-label="${q.originalNo}번 문제 ${selected?'북마크 해제':'북마크 저장'}" title="${selected?'북마크 해제':'북마크 저장'}">${selected?'★ 저장됨':'☆ 북마크'}</button>`;
+  return `<button type="button" class="bookmark-btn ${selected?'is-saved':''} ${forGame?'bookmark-in-game':''}" data-bookmark="${q.id}" aria-pressed="${selected}" aria-label="${q.originalNo}번 문제 ${selected?'북마크 해제':'북마크 저장'}">${starSVG()}</button>`;
 }
 function toggleBookmark(id){
   if(!BYID.has(id))return;
@@ -188,8 +249,8 @@ function updateBookmarkButtons(){
     btn.classList.toggle('is-saved',active);btn.setAttribute('aria-pressed',String(active));
     const q=BYID.get(btn.dataset.bookmark);
     btn.setAttribute('aria-label',(q?q.originalNo+'번 문제 ':'')+(active?'북마크 해제':'북마크 저장'));
-    btn.title=active?'북마크 해제':'북마크 저장';
-    btn.textContent=active?'★ 저장됨':'☆ 북마크';
+    btn.removeAttribute('title');
+    if(!btn.querySelector('.star-icon'))btn.innerHTML=starSVG();
   });
 }
 function saveLearned(){
@@ -204,24 +265,59 @@ function saveLearned(){
 function toast(message){const el=$('toast');el.textContent=message;el.classList.remove('hidden');clearTimeout(toaster);toaster=setTimeout(()=>el.classList.add('hidden'),2800);}
 function pool(type=scope){return QUESTIONS.filter(q=>gameGroups.has(q.group)&&(type==='all'||(type==='learned'?!!learned[q.id]:(type==='saved'?!!bookmarks[q.id]:!learned[q.id]))));}
 function fillGroups(){
-  for(const id of ['groupSelect','libraryGroup']){
-    const content=GROUPS.map((g,i)=>`<label class="group-option"><input type="checkbox" data-group-index="${i}" checked><span>${safe(g)}</span><small>${QUESTIONS.filter(q=>q.group===g).length}문제</small></label>`).join('');
-    $(id).innerHTML=`<details class="group-picker"><summary><span id="${id}Summary">전체 ${GROUPS.length}개 단원</span><span class="group-picker-hint">선택 변경 ▾</span></summary><div class="group-choices"><div class="group-actions"><button type="button" data-groups="all">전체 선택</button><button type="button" data-groups="none">선택 해제</button></div>${content}</div></details>`;
-  }
+  const options='<option value="">전체 단원</option>'+GROUPS.map(g=>`<option value="${safe(g)}">${safe(g)}</option>`).join('');
+  for(const id of ['groupSelect','libraryGroup'])$(id).innerHTML=options;
 }
-function updateGroupSummary(id){const selected=id==='groupSelect'?gameGroups:libraryGroups;$(id+'Summary').textContent=selected.size===GROUPS.length?`전체 ${GROUPS.length}개 단원`:selected.size?`${selected.size}개 단원 선택`:'선택된 단원 없음';}
-function bindGroupPicker(id){const el=$(id),selected=id==='groupSelect'?gameGroups:libraryGroups;
-  function changed(){updateGroupSummary(id);if(id==='groupSelect')updateCounts();else{listPage=0;renderList();}}
-  el.addEventListener('change',e=>{const input=e.target.closest('[data-group-index]');if(!input)return;const g=GROUPS[Number(input.dataset.groupIndex)];if(!g)return;if(input.checked)selected.add(g);else selected.delete(g);changed();});
-  el.addEventListener('click',e=>{const btn=e.target.closest('button[data-groups]');if(!btn)return;const all=btn.dataset.groups==='all';selected.clear();if(all)GROUPS.forEach(g=>selected.add(g));el.querySelectorAll('input[data-group-index]').forEach(input=>{input.checked=all;});changed();});
+function bindGroupPicker(id){
+  const el=$(id),selected=id==='groupSelect'?gameGroups:libraryGroups;
+  el.addEventListener('change',()=>{
+    selected.clear();
+    if(el.value)selected.add(el.value);else GROUPS.forEach(g=>selected.add(g));
+    if(id==='groupSelect')updateCounts();else{listPage=0;renderList();}
+  });
 }
-
 function clampInput(id,min,max){const inp=$(id);let n=parseInt(inp.value,10);if(!Number.isFinite(n))n=min;inp.value=Math.min(max,Math.max(min,n));return Number(inp.value);}
-function updateQuick(){const c=String($('questionCount').value);document.querySelectorAll('[data-count]').forEach(b=>{const active=b.dataset.count==='all'?fullRange:(!fullRange&&b.dataset.count===c);b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});$('questionCount').disabled=fullRange;$('minusQ').disabled=fullRange;$('plusQ').disabled=fullRange;}
-function updateCounts(){const n=QUESTIONS.filter(q=>learned[q.id]).length;$('statAll').textContent=QUESTIONS.length;$('bookmarkCount').textContent=QUESTIONS.filter(q=>bookmarks[q.id]).length;$('statLearned').textContent=n;$('statTodo').textContent=QUESTIONS.length-n;$('memorizedProgress').style.width=(n/QUESTIONS.length*100)+'%';const p=pool().length,c=clampInput('questionCount',1,100);$('poolCount').textContent=p+'개 출제 가능';$('startButton').disabled=!p;$('allCount').textContent=`선택 범위 전체 (${p})`;$('startNotice').textContent=!p?'선택한 단원과 암기 범위에 해당하는 문제가 없습니다.':fullRange?`선택한 범위 ${p}문제를 모두 출제합니다. 한 세트 최대 5쌍, 제한시간은 없습니다.`:p<c?`선택한 범위에 ${p}문제가 있어 전부 출제합니다. 한 세트 최대 ${perRound}쌍입니다.`:`${p}문제 중 ${c}문제를 무작위 출제합니다. 한 세트 최대 ${perRound}쌍입니다.`;updateQuick();}
+function updateQuick(){
+  const c=String($('questionCount').value);
+  document.querySelectorAll('[data-count]').forEach(b=>{
+    const active=b.dataset.count==='all'?fullRange:(!fullRange&&b.dataset.count===c);
+    b.classList.toggle('active',active);
+    b.setAttribute('aria-pressed',String(active));
+  });
+}
+function updateCounts(){
+  const n=QUESTIONS.filter(q=>learned[q.id]).length;
+  $('statAll').textContent=QUESTIONS.length;
+  $('bookmarkCount').textContent=QUESTIONS.filter(q=>bookmarks[q.id]).length;
+  $('statLearned').textContent=n;
+  $('statTodo').textContent=QUESTIONS.length-n;
+  $('memorizedProgress').style.width=(n/QUESTIONS.length*100)+'%';
+  const p=pool().length;
+  const input=$('questionCount');
+  if(fullRange)input.value=String(p);
+  const c=fullRange?p:clampInput('questionCount',1,QUESTIONS.length);
+  $('poolCount').textContent=p+'개 출제 가능';
+  $('startButton').disabled=!p;
+  $('allCount').textContent='전체';
+  $('allCountLabel').textContent=fullRange?'('+p+')':'';
+  $('startNotice').textContent=!p?'선택한 단원과 암기 범위에 해당하는 문제가 없습니다.':fullRange?`선택한 범위 ${p}문제를 모두 출제합니다.`:p<c?`선택한 범위 ${p}문제를 모두 출제합니다.`:`${p}문제 중 ${c}문제를 출제합니다.`;
+  updateQuick();
+}
 function filtered(){let term=$('search').value.trim().toLowerCase();return QUESTIONS.filter(q=>libraryGroups.has(q.group)&&(listFilter==='all'||(listFilter==='learned'?!!learned[q.id]:(listFilter==='saved'?!!bookmarks[q.id]:!learned[q.id])))&&(!term||q.question.toLowerCase().includes(term)||q.answer.toLowerCase().includes(term)||(q.searchText||'').toLowerCase().includes(term)));}
 function imageMarkup(q,side='question'){const img=side==='answer'?q.answerImage:q.picture;return img?`<span class="source-visual"><img loading="lazy" src="${img}" alt="원본 PDF의 ${side==='answer'?'답안 수식':'그림 또는 표'}"><span class="zoom-hint zoom-control" role="button" data-zoom="${q.id}" data-image-side="${side}">원본 확대 ↗</span></span>`:'';}
-function renderList(){const items=filtered();const pages=Math.max(1,Math.ceil(items.length/50));listPage=Math.max(0,Math.min(listPage,pages-1));const sub=items.slice(listPage*50,(listPage+1)*50);$('listMeta').textContent=items.length?`${items.length}문제 중 ${listPage*50+1}~${Math.min((listPage+1)*50,items.length)}번 표시 · 페이지당 50문항`:'0문제 표시';$('questionList').innerHTML=sub.length?sub.map(q=>{return `<article class="item ${learned[q.id]?'learned':''}"><div class="item-top"><span class="item-id">${q.originalNo}</span><div class="item-main"><div class="group-tag">${safe(q.group)}</div><div class="item-q">${lines(q.question)}</div>${imageMarkup(q)}<div class="item-actions">${bookmarkButton(q)}<button class="reveal" data-reveal="${q.id}" aria-expanded="${revealed.has(q.id)}">${revealed.has(q.id)?'정답 접기 −':'정답 보기 +'}</button><label class="learn-toggle"><input type="checkbox" data-learn="${q.id}" ${learned[q.id]?'checked':''}> 암기 완료</label></div>${revealed.has(q.id)?`<div class="item-answer">${lines(q.answer)}${imageMarkup(q,'answer')}</div>`:''}</div></div></article>`;}).join(''):`<div class="empty"><strong>해당하는 문제가 없습니다.</strong>단원이나 검색 조건을 변경하거나 북마크할 문제를 저장해 보세요.</div>`;$('pageLabel').textContent=`${listPage+1} / ${pages}`;$('prevPage').disabled=listPage===0;$('nextPage').disabled=listPage>=pages-1;}
+function renderList(){
+  const items=filtered();
+  const pages=Math.max(1,Math.ceil(items.length/50));
+  listPage=Math.max(0,Math.min(listPage,pages-1));
+  const sub=items.slice(listPage*50,(listPage+1)*50);
+  $('listMeta').textContent=items.length?`${items.length}문제 중 ${listPage*50+1}~${Math.min((listPage+1)*50,items.length)}번 표시 · 페이지당 50문항`:'0문제 표시';
+  $('questionList').innerHTML=sub.length?sub.map(q=>{
+    return `<article class="item ${learned[q.id]?'learned':''}"><div class="item-top"><span class="item-id">${q.originalNo}</span><div class="item-main"><div class="item-unit-row"><span class="group-tag">${safe(q.group)}</span>${bookmarkButton(q)}</div><div class="item-q">${lines(q.question)}</div>${imageMarkup(q)}<div class="item-actions"><button class="reveal" data-reveal="${q.id}" aria-expanded="${revealed.has(q.id)}">${revealed.has(q.id)?'정답 접기 −':'정답 보기 +'}</button><label class="learn-toggle"><input type="checkbox" data-learn="${q.id}" ${learned[q.id]?'checked':''}> 암기 완료</label></div>${revealed.has(q.id)?`<div class="item-answer">${lines(q.answer)}${imageMarkup(q,'answer')}</div>`:''}</div></div></article>`;
+  }).join(''):`<div class="empty"><strong>해당하는 문제가 없습니다.</strong>단원이나 검색 조건을 변경하거나 북마크할 문제를 저장해 보세요.</div>`;
+  $('pageLabel').textContent=`${listPage+1} / ${pages}`;
+  $('prevPage').disabled=listPage===0;
+  $('nextPage').disabled=listPage>=pages-1;
+}
 function renderLobby(){updateCounts();renderList();}
 function show(screen){['lobby','game','result'].forEach(k=>$(k).classList.toggle('hidden',k!==screen));window.scrollTo({top:0,behavior:'instant'});}
 function shuffled(arr){let a=arr.slice();for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
@@ -249,9 +345,18 @@ $('questionList').addEventListener('click',e=>{const btn=e.target.closest('[data
 $('questionList').addEventListener('change',e=>{const el=e.target.closest('[data-learn]');if(!el)return;if(el.checked)learned[el.dataset.learn]=true;else delete learned[el.dataset.learn];saveLearned();renderLobby();});
 $('reviewList').addEventListener('change',e=>{const el=e.target.closest('[data-review-learn]');if(!el)return;if(el.checked)learned[el.dataset.reviewLearn]=true;else delete learned[el.dataset.reviewLearn];saveLearned();});
 $('prevPage').addEventListener('click',()=>{listPage--;renderList();});$('nextPage').addEventListener('click',()=>{listPage++;renderList();});$('search').addEventListener('input',()=>{listPage=0;renderList();});
-[['minusQ','questionCount',-1,1,100],['plusQ','questionCount',1,1,100]].forEach(([bid,iid,offset,min,max])=>$(bid).addEventListener('click',()=>{fullRange=false;$(iid).value=Math.min(max,Math.max(min,clampInput(iid,min,max)+offset));updateCounts();}));
-$('questionCount').addEventListener('change',()=>{fullRange=false;clampInput('questionCount',1,100);updateCounts();});
-$('countQuick').addEventListener('click',e=>{const b=e.target.closest('[data-count]');if(!b)return;if(b.dataset.count==='all')fullRange=true;else{fullRange=false;$('questionCount').value=b.dataset.count;}updateCounts();});
+$('countQuick').addEventListener('click',e=>{
+  const b=e.target.closest('[data-count]');if(!b)return;
+  if(b.dataset.count==='all')fullRange=true;
+  else{fullRange=false;$('questionCount').value=b.dataset.count;}
+  updateCounts();
+});
+$('questionCount').addEventListener('input',()=>{
+  fullRange=false;
+  $('allCountLabel').textContent='';
+  updateQuick();
+});
+$('questionCount').addEventListener('change',()=>updateCounts());
 $('startButton').addEventListener('click',()=>startSession());
 $('questionCards').addEventListener('click',e=>{if(e.target.closest('[data-zoom]'))return;const b=e.target.closest('[data-id]');if(b)selectCard(b);});
 $('answerCards').addEventListener('click',e=>{if(e.target.closest('[data-zoom]'))return;const b=e.target.closest('[data-id]');if(b)selectCard(b);});
@@ -337,33 +442,53 @@ async function syncAPI(endpoint,secret,path,method='GET',data=null){
   if(!res.ok||!out.ok)throw Error(out.error||'서버 오류 '+res.status);
   return out;
 }
-async function syncCycle(){
-  if(!syncConfig||syncBusy)return;
+async function syncCycle(mode='both'){
+  if(!syncConfig){cloudMsg('동기화가 연결되지 않았어요.',true);return;}
+  if(syncBusy){if(mode!=='both')cloudMsg('다른 동기화가 진행 중이에요. 잠시 후 다시 눌러 주세요.');return;}
   syncBusy=true;clearTimeout(syncTimer);
   try{
     const cfg=syncConfig;
-    // 먼저 서버 기능을 확인해 구버전 Worker에서 북마크 전송 오류가 생기지 않도록 합니다.
     let state=await syncAPI(cfg.endpoint,cfg.secret,'/api/state');
     if(syncConfig!==cfg)return;
     syncBookmarksSupported=state.bookmarks===true;
     if(!state.initialized)throw Error('백업 공간이 아직 생성되지 않았습니다. 처음 기기에서 동기화를 시작해 주세요.');
-    const batch=readPending();
-    const changes=Object.entries(batch).filter(([id])=>BYID.has(id)||(syncBookmarksSupported&&isSyncID(id))).map(([id,value])=>({id,learned:!!value}));
-    if(changes.length){
-      await syncAPI(cfg.endpoint,cfg.secret,'/api/changes','POST',{changes});
-      if(syncConfig!==cfg)return;
-      const newer=readPending();
-      for(const {id,learned:sent} of changes)if(newer[id]===sent)delete newer[id];
-      writePending(newer);
-      state=await syncAPI(cfg.endpoint,cfg.secret,'/api/state');
-      if(syncConfig!==cfg)return;
+    let sent=0;
+    if(mode!=='receive'){
+      const batch=readPending();
+      const changes=Object.entries(batch)
+        .filter(([id])=>BYID.has(id)||(syncBookmarksSupported&&isSyncID(id)))
+        .map(([id,value])=>({id,learned:!!value}));
+      if(changes.length){
+        await syncAPI(cfg.endpoint,cfg.secret,'/api/changes','POST',{changes});
+        if(syncConfig!==cfg)return;
+        sent=changes.length;
+        const newer=readPending();
+        for(const {id,learned:sentValue} of changes)if(newer[id]===sentValue)delete newer[id];
+        writePending(newer);
+        if(mode==='both'){
+          state=await syncAPI(cfg.endpoint,cfg.secret,'/api/state');
+          if(syncConfig!==cfg)return;
+        }
+      }
     }
-    applyRemoteIds(state.ids||[],syncBookmarksSupported);syncLastPoll=Date.now();
-    if(!syncBookmarksSupported)cloudMsg('✓ 암기 체크 동기화 완료 · 북마크는 이 기기에만 저장 중 (Worker 코드 업데이트 필요)');
-    else cloudMsg(Object.keys(readPending()).length?'일부 변경 내용을 전송 대기 중이에요.':'✓ 자동 동기화 완료 · 암기 '+localIds().length+'문제 · 북마크 '+localBookmarkIds().length+'개');
-  }catch(e){cloudMsg('오프라인 저장 중 · '+(e.message||'서버 응답을 확인할 수 없습니다.'),true);}
-  finally{syncBusy=false;if(syncConfig&&Object.keys(readPending()).some(id=>BYID.has(id)||(syncBookmarksSupported&&isSyncID(id)))&&navigator.onLine)scheduleSync(4500);}
+    if(mode!=='send')applyRemoteIds(state.ids||[],syncBookmarksSupported);
+    syncLastPoll=Date.now();
+    if(mode==='send'){
+      cloudMsg(sent?`✓ 내 변경 ${sent}건을 서버에 보냈어요. 다른 기기에서는 ‘최신 기록 받기’를 눌러 주세요.`:'✓ 보낼 변경 사항이 없어요. 현재 체크와 북마크는 이미 자동 저장됐습니다.');
+    }else if(mode==='receive'){
+      cloudMsg(`✓ 서버 기록을 받아왔어요 · 암기 ${localIds().length}문제 · 북마크 ${localBookmarkIds().length}개${Object.keys(readPending()).length?' (이 기기의 미전송 변경은 유지)':''}`);
+    }else if(!syncBookmarksSupported){
+      cloudMsg('✓ 암기 체크 동기화 완료 · 북마크는 이 기기에만 저장 중 (Worker 코드 업데이트 필요)');
+    }else{
+      cloudMsg(Object.keys(readPending()).length?'일부 변경 내용을 전송 대기 중이에요.':`✓ 자동 동기화 완료 · 암기 ${localIds().length}문제 · 북마크 ${localBookmarkIds().length}개`);
+    }
+  }catch(e){cloudMsg('동기화 실패 · '+(e.message||'서버 응답을 확인할 수 없습니다.'),true);}
+  finally{
+    syncBusy=false;
+    if(syncConfig&&Object.keys(readPending()).some(id=>BYID.has(id)||(syncBookmarksSupported&&isSyncID(id)))&&navigator.onLine)scheduleSync(4500);
+  }
 }
+
 function setSyncConfig(cfg){
   if(!syncConfig||syncConfig.secret!==cfg.secret||syncConfig.endpoint!==cfg.endpoint)writePending({});
   syncConfig=cfg;
@@ -423,7 +548,8 @@ $('cloudShare').addEventListener('click',withCloudBusy($('cloudShare'),async()=>
 $('cloudCopyKey').addEventListener('click',withCloudBusy($('cloudCopyKey'),async()=>{
   await copyText(syncConfig.secret);cloudMsg('✓ 동기화 키 복사 완료. 공유하지 마세요.');
 }));
-$('cloudRefresh').addEventListener('click',withCloudBusy($('cloudRefresh'),async()=>{await syncCycle();}));
+$('cloudSend').addEventListener('click',withCloudBusy($('cloudSend'),async()=>{await syncCycle('send');}));
+$('cloudReceive').addEventListener('click',withCloudBusy($('cloudReceive'),async()=>{await syncCycle('receive');}));
 $('cloudDisconnect').addEventListener('click',()=>{
   if(!confirm('이 기기에서 자동 동기화 연결을 해제할까요?\n이 기기의 암기 체크와 서버 기록은 그대로 남습니다.'))return;
   clearTimeout(syncTimer);syncConfig=null;
