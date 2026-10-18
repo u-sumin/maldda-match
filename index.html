@@ -434,6 +434,22 @@ function fillGroups(){
     GROUPS.map(g=>`<option value="${safe(g)}">${safe(g)} (${groupTotals.get(g)||0})</option>`).join('');
   for(const id of ['groupSelect','libraryGroup'])$(id).innerHTML=options;
 }
+// 문제 보관함에서 선택한 필터에 맞춰 단원별 문항 수를 표시한다.
+// 검색어나 게임 출제범위는 단원별 집계에 영향을 주지 않는다.
+function updateLibraryGroupCounts(){
+  const counts=new Map(GROUPS.map(g=>[g,0]));
+  let total=0;
+  for(const q of QUESTIONS){
+    const selected=listFilter==='all'||(listFilter==='learned'?!!learned[q.id]:(listFilter==='saved'?!!bookmarks[q.id]:!learned[q.id]));
+    if(!selected)continue;
+    total++;
+    counts.set(q.group,(counts.get(q.group)||0)+1);
+  }
+  for(const option of $('libraryGroup').options){
+    const count=option.value?(counts.get(option.value)||0):total;
+    option.textContent=`${option.value||'전체 단원'} (${count})`;
+  }
+}
 function bindGroupPicker(id){
   const el=$(id),selected=id==='groupSelect'?gameGroups:libraryGroups;
   el.addEventListener('change',()=>{
@@ -472,6 +488,7 @@ function updateCounts(){
 function filtered(){let term=$('search').value.trim().toLowerCase();return QUESTIONS.filter(q=>libraryGroups.has(q.group)&&(listFilter==='all'||(listFilter==='learned'?!!learned[q.id]:(listFilter==='saved'?!!bookmarks[q.id]:!learned[q.id])))&&(!term||q.question.toLowerCase().includes(term)||q.answer.toLowerCase().includes(term)||(q.searchText||'').toLowerCase().includes(term)));}
 function imageMarkup(q,side='question'){const img=side==='answer'?q.answerImage:q.picture;return img?`<span class="source-visual"><img loading="lazy" src="${img}" alt="원본 PDF의 ${side==='answer'?'답안 수식':'그림 또는 표'}"><span class="zoom-hint zoom-control" role="button" data-zoom="${q.id}" data-image-side="${side}">원본 확대 ↗</span></span>`:'';}
 function renderList(){
+  updateLibraryGroupCounts();
   const items=filtered();
   const pages=Math.max(1,Math.ceil(items.length/50));
   listPage=Math.max(0,Math.min(listPage,pages-1));
