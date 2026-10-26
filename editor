@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>말따 MATCH | 문제 편집기</title>
+<style>
+:root{--green:#184d3a;--bright:#187a57;--bg:#f5f8f5;--text:#203b2f;--muted:#61766c;--line:#dde8de;--soft:#ecf5ed}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;word-break:keep-all}
+button,input,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.4;cursor:not-allowed}
+.shell{max-width:1050px;margin:0 auto;padding:22px 19px 65px}
+h1{font-size:26px;letter-spacing:-1px;margin:0 0 5px}h2{font-size:17px;margin:0;letter-spacing:-.4px}p{margin:4px 0 0}.muted{color:var(--muted);font-size:13px}
+.box{background:#fff;border:1px solid var(--line);border-radius:17px;padding:20px}.top{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:22px}
+.steps{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0 17px;font-size:13px;color:#416653}.steps span{background:var(--soft);padding:5px 12px;border-radius:50px}
+.btn{border:1px solid var(--line);background:#fff;color:var(--green);padding:9px 15px;border-radius:10px;font-weight:700}.btn:hover{background:#f1f7f2}.btn.primary{background:var(--green);border-color:var(--green);color:white}.btn.primary:hover{background:#21644b}.btn.light{background:var(--soft);border-color:#d1e3d4}
+.action-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:14px}.filebtn{display:inline-flex;gap:5px;align-items:center;justify-content:center}.filebtn input{display:none}
+.status{font-size:13px;font-weight:700;color:var(--green)}.status.error{color:#b03e32}
+.editor{display:grid;grid-template-columns:minmax(240px,360px) minmax(0,1fr);gap:15px;margin-top:16px;align-items:start}
+.field-label{font-weight:750;font-size:13px;display:block;margin:16px 0 7px}
+.input,.area{width:100%;border:1px solid #cbdacd;background:white;border-radius:10px;padding:10px 12px;outline:none;color:var(--text)}.input:focus,.area:focus{border-color:var(--bright);box-shadow:0 0 0 3px rgba(24,122,87,.08)}.area{min-height:156px;resize:vertical;line-height:1.6}
+.item-list{max-height:560px;overflow:auto;border:1px solid var(--line);border-radius:10px;margin-top:10px}
+.item{padding:11px 12px;border-bottom:1px solid #edf0eb;display:block;width:100%;text-align:left;background:white;border-left:0;border-right:0;border-top:0;color:var(--text);font-size:13px;line-height:1.45}.item:last-child{border-bottom:0}.item:hover{background:#f7fbf7}.item.active{background:#edf7f0;color:#14563a}.item small{display:block;color:#667f70;font-size:11px;font-weight:700;margin-bottom:2px}.changed{color:#cf7833;font-weight:800}.badge{font-size:11px;background:#e9f3e8;color:#2f6945;border-radius:6px;padding:2px 7px}
+.image-row{margin-top:16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.image-block{min-width:0;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fafcf9}
+.image-title{font-size:13px;font-weight:800;margin:0 0 8px;color:var(--green)}
+.image-canvas{min-height:115px;max-height:275px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5ede5;border-radius:9px;padding:8px;overflow:auto}
+.image-canvas img{display:block;max-width:100%;max-height:245px;width:auto;height:auto;object-fit:contain;cursor:zoom-in}
+.image-canvas .empty-image{color:#7a8c7d;font-size:12px;text-align:center}
+.image-controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:9px}
+.btn.tiny{font-size:12px;padding:6px 10px;border-radius:8px}
+.image-controls .remove-img{color:#9b5041}
+.image-hint{color:var(--muted);font-size:11px;margin:7px 0 0}
+.zoom{position:fixed;inset:0;z-index:50;background:rgba(9,22,15,.85);display:flex;align-items:center;justify-content:center;padding:48px 12px 18px}
+.zoom img{max-width:96vw;max-height:90vh;object-fit:contain;background:#fff}
+.zoom-close{position:absolute;right:14px;top:11px;border:0;border-radius:8px;background:#fff;font-size:22px;line-height:1;padding:5px 11px}
+.footer{margin-top:12px;background:#f4f8f4;border-radius:12px;padding:12px 14px;font-size:12px;color:#496655}
+.hidden{display:none!important}.toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.selected-info{display:flex;flex-wrap:wrap;gap:8px;color:#52725f;font-size:12px;font-weight:750}
+@media(max-width:760px){.shell{padding:16px 12px 60px}.editor{grid-template-columns:1fr}.item-list{max-height:250px}.box{padding:16px}h1{font-size:23px}.image-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="top"><div><h1>말따 MATCH 문제 편집기</h1><p class="muted">문제나 정답을 직접 수정하고, GitHub에 올릴 게임 파일을 만들 수 있어요.</p></div><span class="badge">별도 설치 없음</span></div>
+  <div class="steps"><span>1. 최신 게임 불러오기</span><span>2. 문제 수정</span><span>3. index.html 저장</span><span>4. GitHub 교체</span></div>
+  <div class="box">
+    <h2>게임 파일 불러오기</h2>
+    <p class="muted">현재 GitHub의 최신 게임을 불러오거나, 내 컴퓨터에 있는 index.html을 선택하세요. 이미지와 게임 기능은 수정하지 않아요.</p>
+    <div class="action-row">
+      <button class="btn primary" id="loadGithub" type="button">내 GitHub에서 불러오기</button>
+      <label class="btn filebtn">파일 직접 선택<input id="htmlFile" type="file" accept=".html,text/html"></label>
+      <span id="loadStatus" class="status" aria-live="polite">파일을 불러와 주세요.</span>
+    </div>
+    <p class="muted">GitHub에서 바로 불러오기가 실패하면 파일을 다운로드해 직접 선택하면 됩니다.</p>
+  </div>
+  <div id="editPane" class="editor hidden">
+    <div class="box">
+      <div class="toolbar"><h2>문제 찾기</h2><span id="countNote" class="muted"></span></div>
+      <input class="input" id="search" placeholder="문제 번호, 문제 내용, 정답 검색" aria-label="문제 검색" style="margin-top:12px">
+      <div class="item-list" id="items" aria-label="문제 목록"></div>
+      <div class="action-row" style="justify-content:space-between"><button class="btn" id="prevPage" type="button">이전</button><span class="muted" id="pageInfo"></span><button class="btn" id="nextPage" type="button">다음</button></div>
+    </div>
+    <div class="box" id="editForm">
+      <div class="toolbar"><h2>문제 수정</h2><span class="badge" id="changeCount">수정 0개</span></div>
+      <div class="selected-info" id="selectedInfo" style="margin-top:12px"></div>
+      <label class="field-label" for="questionText">문제</label>
+      <textarea class="area" id="questionText" spellcheck="false" placeholder="문제를 입력하세요"></textarea>
+      <label class="field-label" for="answerText">정답 (줄바꿈 가능)</label>
+      <textarea class="area" id="answerText" spellcheck="false" placeholder="정답을 입력하세요"></textarea>
+      <div class="image-row" aria-label="문제 및 정답 그림 미리보기">
+        <section class="image-block">
+          <h3 class="image-title">문제 그림 또는 표</h3>
+          <div class="image-canvas" id="picturePreview"></div>
+          <div class="image-controls">
+            <label class="btn tiny filebtn">그림 추가/변경<input type="file" id="pictureFile" accept="image/png,image/jpeg,image/webp,image/gif"></label>
+            <button class="btn tiny remove-img" type="button" id="pictureRemove">그림 삭제</button>
+          </div>
+        </section>
+        <section class="image-block">
+          <h3 class="image-title">정답 그림 또는 수식</h3>
+          <div class="image-canvas" id="answerImagePreview"></div>
+          <div class="image-controls">
+            <label class="btn tiny filebtn">그림 추가/변경<input type="file" id="answerImageFile" accept="image/png,image/jpeg,image/webp,image/gif"></label>
+            <button class="btn tiny remove-img" type="button" id="answerImageRemove">그림 삭제</button>
+          </div>
+        </section>
+      </div>
+      <p class="image-hint">그림을 누르면 크게 볼 수 있어요. 원본 게임에 이미 들어 있는 그림은 자동으로 표시되고, 변경하지 않으면 그대로 유지됩니다.</p>
+      <div class="action-row"><button class="btn light" id="undoOne" type="button">이 문제 수정 취소</button><span class="muted">입력할 때마다 임시 반영돼요.</span></div>
+      <div class="footer">문제 번호와 단원은 그대로 유지됩니다. 그림을 교체한 경우 새 파일에도 포함됩니다. 수정한 뒤 반드시 아래 <strong>새 index.html 다운로드</strong>를 눌러주세요.</div>
+    </div>
+  </div>
+  <div class="box hidden" id="exportPane" style="margin-top:16px">
+    <div class="toolbar"><div><h2>수정한 게임 저장하기</h2><p class="muted" id="exportSummary">수정한 내용이 반영된 파일을 만들 수 있어요.</p></div><button class="btn primary" id="download" type="button">새 index.html 다운로드</button></div>
+    <div class="footer">다운로드한 index.html을 <strong><a href="https://github.com/u-sumin/maldda-match" target="_blank" rel="noopener noreferrer">말따 GitHub 저장소</a></strong>의 기존 index.html과 교체하고 <strong>Commit changes</strong>를 누르면 스마트폰과 태블릿에도 새 문제 내용이 적용됩니다. 기존 암기 체크, 북마크, Cloudflare 동기화 기능은 그대로 유지됩니다.</div>
+  </div>
+</div>
+<div class="zoom hidden" id="imageZoom" role="dialog" aria-modal="true" aria-label="그림 확대 보기"><button type="button" class="zoom-close" id="zoomClose" aria-label="닫기">×</button><img id="zoomedImg" alt="확대한 그림"></div>
+<script>
+'use strict';
+const GITHUB_RAW='https://raw.githubusercontent.com/u-sumin/maldda-match/main/index.html';
+const $=id=>document.getElementById(id);
+const escapeHtml=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const QUEST_PATTERN=/const QUESTIONS\s*=\s*(\[[\s\S]*?\]);\s*['"]use strict['"];?/;
+let originalHtml='',originalRows=[],rows=[],selectedId=null,listPage=0,matched=[];
+const perPage=40;
+function setStatus(msg,err=false){$('loadStatus').textContent=msg;$('loadStatus').classList.toggle('error',err);}
+function loadHtml(html,label){
+ const match=html.match(QUEST_PATTERN);
+ if(!match)throw new Error('문제 데이터를 찾지 못했어요. 최신 말따 MATCH index.html 파일인지 확인해 주세요.');
+ let parsed;try{parsed=JSON.parse(match[1]);}catch(e){throw new Error('문제 데이터를 읽지 못했어요. 원본 index.html 파일로 다시 시도해 주세요.');}
+ if(!Array.isArray(parsed)||!parsed.length||!parsed.every(q=>q&&typeof q.id==='string'&&typeof q.question==='string'&&typeof q.answer==='string'))throw new Error('문제 파일 구조가 예상과 달라요.');
+ originalHtml=html;originalRows=structuredClone(parsed);rows=structuredClone(parsed);
+ selectedId=rows[0].id;listPage=0;$('search').value='';
+ $('editPane').classList.remove('hidden');$('exportPane').classList.remove('hidden');setStatus(label+' · '+rows.length+'문제 불러옴');
+ renderList();selectRow(selectedId);refreshChanges();
+}
+function isChanged(i){return !!rows[i]&&['question','answer','picture','answerImage'].some(k=>rows[i][k]!==originalRows[i][k]);}
+function changedCount(){return rows.reduce((n,q,i)=>n+(isChanged(i)?1:0),0);}
+function refreshChanges(){const n=changedCount();$('changeCount').textContent='수정 '+n+'개';$('exportSummary').textContent=n?'수정한 '+n+'개 문항을 반영해 새 HTML 파일을 만듭니다.':'아직 수정한 문항이 없습니다. 그래도 원본과 같은 게임 파일을 받을 수 있습니다.';}
+function getMatched(){const text=$('search').value.trim().toLocaleLowerCase();return rows.map((q,i)=>({...q,_index:i})).filter(q=>!text||[q.originalNo,q.group,q.question,q.answer].some(v=>String(v??'').toLocaleLowerCase().includes(text)));}
+function renderList(){
+ matched=getMatched();const maxPage=Math.max(0,Math.ceil(matched.length/perPage)-1);listPage=Math.min(listPage,maxPage);
+ const slice=matched.slice(listPage*perPage,(listPage+1)*perPage);
+ $('items').innerHTML=slice.length?slice.map(q=>{
+ const text=q.question.replace(/\s+/g,' ').trim();
+ return `<button type="button" class="item ${q.id===selectedId?'active':''}" data-id="${escapeHtml(q.id)}"><small>${escapeHtml(q.group)} · 원본 ${escapeHtml(q.originalNo)}번 ${isChanged(q._index)?'<span class="changed">수정됨</span>':''}</small>${escapeHtml(text.length>97?text.slice(0,97)+'…':text)}</button>`
+ }).join(''):'<div style="padding:20px;color:#63766b">검색 결과가 없어요.</div>';
+ $('items').querySelectorAll('button[data-id]').forEach(b=>b.addEventListener('click',()=>selectRow(b.dataset.id)));
+ $('countNote').textContent=matched.length+'문제';$('pageInfo').textContent=(listPage+1)+' / '+(maxPage+1);
+ $('prevPage').disabled=listPage===0;$('nextPage').disabled=listPage>=maxPage;
+}
+function selectRow(id){const q=rows.find(q=>q.id===id);if(!q)return;selectedId=id;
+ $('selectedInfo').innerHTML=`<span>${escapeHtml(q.group)}</span><span>원본 ${escapeHtml(q.originalNo)}번</span><span>문항 ID: ${escapeHtml(q.id)}</span>`;
+ $('questionText').value=q.question;$('answerText').value=q.answer;
+ $('undoOne').disabled=!isChanged(rows.indexOf(q));
+ renderPicture('picture',q);renderPicture('answerImage',q);
+ $('items').querySelectorAll('button[data-id]').forEach(b=>b.classList.toggle('active',b.dataset.id===id));
+}
+function renderPicture(key,q){
+ const pane=$(key==='picture'?'picturePreview':'answerImagePreview');
+ pane.replaceChildren();
+ const src=q[key];
+ if(typeof src==='string' && /^data:image\/(?:png|jpe?g|webp|gif);base64,/i.test(src)){
+  const im=document.createElement('img');im.src=src;im.alt=key==='picture'?'문제에 포함된 그림 또는 표':'정답에 포함된 그림 또는 수식';
+  im.title='눌러서 확대 보기';im.addEventListener('click',()=>openZoom(src,im.alt));pane.appendChild(im);
+ }else{
+  const msg=document.createElement('span');msg.className='empty-image';msg.textContent='등록된 그림이 없어요.';pane.appendChild(msg);
+ }
+ $(key==='picture'?'pictureRemove':'answerImageRemove').disabled=!src;
+}
+function openZoom(src,alt){$('zoomedImg').src=src;$('zoomedImg').alt=alt;$('imageZoom').classList.remove('hidden');}
+function closeZoom(){$('imageZoom').classList.add('hidden');$('zoomedImg').removeAttribute('src');}
+$('zoomClose').addEventListener('click',closeZoom);
+$('imageZoom').addEventListener('click',e=>{if(e.target===$('imageZoom'))closeZoom()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeZoom()});
+for(const key of ['picture','answerImage']){
+ $(key+'File').addEventListener('change',async e=>{
+  const file=e.target.files?.[0]; e.target.value='';if(!file)return;
+  if(!/^image\/(png|jpeg|webp|gif)$/.test(file.type)){alert('PNG, JPG, WEBP, GIF 그림 파일만 사용할 수 있어요.');return;}
+  if(file.size>7*1024*1024){alert('그림은 7MB 이하로 선택해 주세요.');return;}
+  const data=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(file)});
+  const i=rows.findIndex(q=>q.id===selectedId);if(i<0)return;rows[i][key]=data;
+  renderPicture(key,rows[i]);refreshChanges();$('undoOne').disabled=!isChanged(i);
+ });
+ $(key+'Remove').addEventListener('click',()=>{
+  const i=rows.findIndex(q=>q.id===selectedId);if(i<0||!rows[i][key])return;
+  if(!confirm('이 문항에서 그림을 삭제할까요? 기존 게임에서 해당 그림이 보이지 않게 됩니다.'))return;
+  delete rows[i][key];renderPicture(key,rows[i]);refreshChanges();$('undoOne').disabled=!isChanged(i);
+ });
+}
+function changeField(key,val){let i=rows.findIndex(q=>q.id===selectedId);if(i<0)return;rows[i][key]=val;refreshChanges();$('undoOne').disabled=!isChanged(i);}
+$('questionText').addEventListener('input',e=>changeField('question',e.target.value));
+$('answerText').addEventListener('input',e=>changeField('answer',e.target.value));
+$('questionText').addEventListener('blur',renderList);$('answerText').addEventListener('blur',renderList);
+$('undoOne').addEventListener('click',()=>{const i=rows.findIndex(q=>q.id===selectedId);if(i<0)return;for(const key of ['question','answer','picture','answerImage']){if(Object.prototype.hasOwnProperty.call(originalRows[i],key))rows[i][key]=originalRows[i][key];else delete rows[i][key];}selectRow(selectedId);renderList();refreshChanges();});
+$('search').addEventListener('input',()=>{listPage=0;renderList()});
+$('prevPage').addEventListener('click',()=>{listPage--;renderList()});
+$('nextPage').addEventListener('click',()=>{listPage++;renderList()});
+$('loadGithub').addEventListener('click',async()=>{
+ const button=$('loadGithub');button.disabled=true;setStatus('GitHub에서 불러오는 중...');
+ try{const res=await fetch(GITHUB_RAW+'?v='+Date.now(),{cache:'no-store'});if(!res.ok)throw new Error('GitHub 오류: '+res.status);loadHtml(await res.text(),'GitHub 최신 버전');}
+ catch(e){setStatus('자동 불러오기 실패. 파일 직접 선택을 이용해 주세요. ('+e.message+')',true)}finally{button.disabled=false}
+});
+$('htmlFile').addEventListener('change',async e=>{
+ const file=e.target.files?.[0];if(!file)return;
+ try{loadHtml(await file.text(),file.name);}catch(err){setStatus(err.message,true)}
+ e.target.value='';
+});
+$('download').addEventListener('click',()=>{
+ if(!originalHtml||!rows.length)return;
+ const replaced=originalHtml.replace(QUEST_PATTERN,(whole)=>{
+ const data=JSON.stringify(rows).replace(/</g,'\\u003c');
+ // Keep the original strict-mode statement immediately following the dataset intact.
+ const originalEnding=whole.slice(whole.indexOf('];',whole.length-17)+2);
+ // Extract its exact ending from the full matched content rather than reconstructing scripts.
+ const end=whole.match(/;\s*['"]use strict['"];?$/)?.[0]||";\n'use strict';";
+ return 'const QUESTIONS = '+data+end;
+ });
+ if(replaced===originalHtml&&changedCount()>0){alert('파일 수정에 실패했어요.');return;}
+ const blob=new Blob([replaced],{type:'text/html;charset=utf-8'});
+ const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='index.html';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+});
+</script>
+</body>
+</html>
