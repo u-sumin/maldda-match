@@ -37,11 +37,20 @@ h1{font-size:26px;letter-spacing:-1px;margin:0 0 5px}h2{font-size:17px;margin:0;
 .hidden{display:none!important}.toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
 .selected-info{display:flex;flex-wrap:wrap;gap:8px;color:#52725f;font-size:12px;font-weight:750}
 @media(max-width:760px){.shell{padding:16px 12px 60px}.editor{grid-template-columns:1fr}.item-list{max-height:250px}.box{padding:16px}h1{font-size:23px}.image-row{grid-template-columns:1fr}}
+
+/* 편집기에서 짝맞추기 사이트로 돌아가는 상단 링크 */
+.site-nav-link{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
+  padding:7px 15px;border:1px solid #cbdccf;border-radius:9px;background:#fff;
+  color:var(--green);text-decoration:none;font-size:12px;font-weight:800;
+  line-height:1.35;white-space:nowrap;}
+.site-nav-link:hover{background:var(--soft);border-color:#a4cbb3}
+.site-nav-link:focus-visible{outline:2px solid var(--bright);outline-offset:3px}
+@media(max-width:760px){.top{flex-wrap:nowrap}.top>div{min-width:0}.site-nav-link{padding:7px 12px}}
 </style>
 </head>
 <body>
 <div class="shell">
-  <div class="top"><div><h1>말따 MATCH 문제 편집기</h1><p class="muted">문제나 정답을 직접 수정하고, GitHub에 올릴 게임 파일을 만들 수 있어요.</p></div><span class="badge">별도 설치 없음</span></div>
+  <div class="top"><div><h1>말따 MATCH 문제 편집기</h1><p class="muted">문제나 정답을 직접 수정하고, GitHub에 올릴 게임 파일을 만들 수 있어요.</p></div><a class="site-nav-link" href="index.html" aria-label="말따 MATCH 게임 사이트로 이동">사이트 이동</a></div>
   <div class="steps"><span>1. 최신 게임 불러오기</span><span>2. 문제 수정</span><span>3. index.html 저장</span><span>4. GitHub 교체</span></div>
   <div class="box">
     <h2>게임 파일 불러오기</h2>

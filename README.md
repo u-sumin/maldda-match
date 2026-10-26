@@ -1,26 +1,11 @@
-# 말따 MATCH — 북마크 및 작은 동기화 표시 업데이트
+# 말따 MATCH 상단 이동 버튼 업데이트
 
-## 변경 기능
-- 최상단의 `설치 없이 실행` 문구 삭제
-- 자동 동기화 패널을 작은 접이식 줄로 변경 (기본 접힘)
-- 문제 보관함과 게임 문제 카드 및 복습 화면에 `☆ 북마크` 추가
-- 보관함의 `☆ 북마크` 탭에서 저장한 문제만 확인 (한 페이지에 50문항)
-- 게임 출제 범위에 `북마크` 추가 (원할 때 북마크 문제만 출제)
-- JSON 백업/가져오기에 북마크 포함 (이전 JSON 가져오기와 호환)
-- Cloudflare 서버에 기존 암기 체크뿐 아니라 북마크 여부도 동기화
+`index.html`과 `editor.html` 두 파일을 **같은 GitHub 저장소 루트**에 업로드하고 기존 파일을 덮어쓰세요.
 
-## GitHub 사이트 업데이트
-1. `index.html`을 GitHub 저장소 `u-sumin/maldda-match`의 루트에 있는 기존 `index.html`과 교체합니다.
-2. Commit changes를 눌러 저장합니다.
-3. `https://u-sumin.github.io/maldda-match/`에 접속합니다. 공개 설정은 그대로 유지합니다.
+- 게임 상단 **수정하기** 클릭 → `editor.html`
+- 편집기 상단 **사이트 이동** 클릭 → `index.html`
 
-## 북마크까지 기기 간 동기화하려면 (기존 Worker 갱신 필요)
-1. Cloudflare에 로그인하고 Worker `maldda-backup-api`를 엽니다.
-2. `Edit code`에서 기존 내용을 지우고 이 ZIP의 `cloudflare-worker.js` 내용 전체를 붙여넣습니다.
-3. Deploy합니다. **Worker나 D1을 새로 만들거나 DB 연결을 다시 할 필요는 없습니다.**
-4. Worker 주소 `/health`가 `{..."bookmarks":true}`를 반환하는지 확인합니다.
-5. 게임 페이지에서 접힌 `☁ 자동 동기화` 항목을 열어 상태를 확인합니다.
+짝맞추기 게임: https://u-sumin.github.io/maldda-match/
+문제 편집기: https://u-sumin.github.io/maldda-match/editor.html
 
-**기존 24자리 기기 연결 비밀키와 암기 체크는 그대로 유지됩니다.** Worker를 갱신하기 전에는 암기 체크만 서버에 동기화되고 새 북마크는 기기에만 보관됩니다. Worker를 새 코드로 갱신하면 대기 중이던 북마크를 전송합니다.
-
-암기 체크/북마크는 문제 ID 기준으로 저장되며, 사이트 소스에 연결 비밀키를 넣지 않습니다. 게임 데이터와 그림은 기존처럼 `index.html` 안에 포함돼 있습니다.
+문항 323개, 암기 및 북마크 상태 저장, Cloudflare 동기화 코드, 기존 그림 데이터는 변경하지 않았습니다.

@@ -311,11 +311,22 @@
   border-color:#184d3a!important;
   color:#ffffff!important;
 }
+
+/* 게임에서 문제 편집기로 바로 이동하는 상단 링크 */
+.editor-nav-link{
+  flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
+  padding:7px 15px;border:1px solid #cbdccf;border-radius:9px;
+  background:#fff;color:#184d3a;text-decoration:none;
+  font-size:12px;font-weight:800;line-height:1.35;white-space:nowrap;
+}
+.editor-nav-link:hover{background:#ebf5ee;border-color:#a4cbb3}
+.editor-nav-link:focus-visible{outline:2px solid #187a57;outline-offset:3px}
+@media(max-width:490px){.editor-nav-link{padding:7px 12px;font-size:12px}}
 </style>
 </head>
 <body>
 <div class="shell">
-<header class="topbar"><div class="logo"><div class="logo-mark">M</div><span>말따 <span style="font-weight:460;color:#718777">MATCH</span></span></div></header>
+<header class="topbar"><div class="logo"><div class="logo-mark">M</div><span>말따 <span style="font-weight:460;color:#718777">MATCH</span></span></div><a class="editor-nav-link" href="editor.html" aria-label="문제 편집기로 이동">수정하기</a></header>
 <section id="lobby">
 <div class="hero"><div class="eyebrow">CIVIL ENGINEERING STUDY GAME</div><h1>토목 말따먹기<br>짝맞추기 연습</h1><p>문제를 고르고 정답과 연결해 보세요.</p><div class="stats"><div class="stat"><strong id="statAll">0</strong><span>전체 문제</span></div><div class="stat"><strong id="statLearned">0</strong><span>암기 완료</span></div><div class="stat"><strong id="statTodo">0</strong><span>미암기</span></div></div><div class="hero-progress"><div id="memorizedProgress" style="width:0%"></div></div></div>
  <details class="panel cloud-area" id="cloudBackupPanel">
